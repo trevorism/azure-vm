@@ -47,6 +47,7 @@ dependencies {
     compile 'com.trevorism:secure-utils:1.0.0'
 
     compile 'io.swagger:swagger-jersey2-jaxrs:1.5.16'
+    compile 'com.microsoft.azure:azure:1.7.0'
 
     acceptanceCompile 'info.cukes:cucumber-groovy:1.2.5'
     acceptanceCompile 'com.trevorism:http-utils:1.0.0'
