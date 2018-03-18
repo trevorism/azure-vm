@@ -46,7 +46,7 @@ class VmController {
         service.restartVm()
     }
 
-    @ApiOperation(value = "Get the trevor VM status **Secure")
+    @ApiOperation(value = "Get the trevor VM status")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     String getStatus(){

@@ -3,7 +3,6 @@ package com.trevorism.gcloud.azure
 import com.microsoft.azure.AzureEnvironment
 import com.microsoft.azure.credentials.ApplicationTokenCredentials
 import com.microsoft.azure.management.Azure
-import com.microsoft.azure.management.compute.InstanceViewStatus
 import com.microsoft.azure.management.compute.VirtualMachine
 
 /**
@@ -20,17 +19,17 @@ class TrevorAzureVmService implements VmService{
 
     @Override
     void stopVm() {
-        getVirtualMachine().powerOffAsync()
+        getVirtualMachine().powerOff()
     }
 
     @Override
     void startVm() {
-        getVirtualMachine().startAsync()
+        getVirtualMachine().start()
     }
 
     @Override
     void restartVm() {
-        getVirtualMachine().restartAsync()
+        getVirtualMachine().restart()
     }
 
     @Override
