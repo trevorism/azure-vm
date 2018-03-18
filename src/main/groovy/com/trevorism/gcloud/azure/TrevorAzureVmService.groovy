@@ -10,31 +10,34 @@ import com.microsoft.azure.management.compute.VirtualMachine
  */
 class TrevorAzureVmService implements VmService{
 
-    Properties properties
+    private final Properties properties
+    private final VirtualMachine vm
+
 
     TrevorAzureVmService(){
         properties = new Properties()
         properties.load(TrevorAzureVmService.class.getClassLoader().getResourceAsStream("secrets.properties"))
+        vm = getVirtualMachine()
     }
 
     @Override
     void stopVm() {
-        getVirtualMachine().powerOff()
+        vm.powerOff()
     }
 
     @Override
     void startVm() {
-        getVirtualMachine().start()
+        vm.start()
     }
 
     @Override
     void restartVm() {
-        getVirtualMachine().restart()
+        vm.restart()
     }
 
     @Override
     String getVmStatus() {
-        return getVirtualMachine().powerState().toString()
+        return vm.powerState().toString()
     }
 
     private VirtualMachine getVirtualMachine() {
