@@ -1,0 +1,65 @@
+Configure Azure VM:
+
+Create VM image
+Add networking rules 80 and 443
+Add Static DNS entry
+
+Ubuntu build machine:
+
+Install JAVA:
+
+sudo add-apt-repository ppa:webupd8team/java
+sudo apt update; sudo apt install oracle-java8-installer
+sudo apt install oracle-java8-set-default
+
+Install Jenkins:
+
+wget -q -O - https://pkg.jenkins.io/debian/jenkins.io.key | sudo apt-key add -
+sudo sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
+sudo apt-get update
+sudo apt-get install jenkins
+
+Install nexus:
+
+download and transfer nexus 3 to VM
+tar xvzf nexus-3.12.0-01-unix.tar.gz
+sudo useradd -r -s /bin/false nexus
+run it as a service: https://help.sonatype.com/repomanager3/installation/run-as-a-service
+
+Install apache httpd:
+
+sudo apt-get install apache2
+sudo a2enmod proxy
+sudo a2enmod proxy_http
+sudo a2enmod headers
+
+/etc/apache2/sites-enabled/000-default.conf
+```
+ProxyRequests Off
+ProxyPreserveHost On
+
+<VirtualHost *:80>
+  ServerName trevorism-build.eastus.cloudapp.azure.com
+  ServerAdmin tbrooks@trevorism.com
+  ProxyPass /nexus http://localhost:8081/nexus
+  ProxyPassReverse /nexus http://localhost:8081/nexus
+  ProxyPass / http://localhost:8080/ nocanon
+  ProxyPassReverse / http://localhost:8080/ nocanon
+  ErrorLog logs/trevorism-build.eastus.cloudapp.azure.com/nexus/error.log
+  CustomLog logs/trevorism-build.eastus.cloudapp.azure.com/nexus/access.log common
+</VirtualHost>
+```
+
+See final comment here for a better configuration: https://wiki.jenkins.io/display/JENKINS/Jenkins+says+my+reverse+proxy+setup+is+broken
+
+Configure for Node:
+sudo apt-get install libfontconfig
+
+Configure Gcloud SDK:
+https://cloud.google.com/sdk/docs/quickstart-debian-ubuntu
+
+export CLOUD_SDK_REPO="cloud-sdk-$(lsb_release -c -s)"
+echo "deb http://packages.cloud.google.com/apt $CLOUD_SDK_REPO main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
+curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+sudo apt-get update && sudo apt-get install google-cloud-sdk
+sudo apt-get install google-cloud-sdk-app-engine-java
