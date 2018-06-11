@@ -82,7 +82,7 @@ check {
     dependsOn('jacocoTestReport')
 }
 
-deliver {
+task deliver {
     dependsOn("appengineDeploy", "acceptance")
     acceptance.mustRunAfter("appengineDeploy")
 }
