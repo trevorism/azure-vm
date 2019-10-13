@@ -19,7 +19,7 @@ class TrevorAzureVmService implements VmService{
 
     TrevorAzureVmService(){
         properties = new Properties()
-        properties.load(TrevorAzureVmService.class.getClassLoader().getResourceAsStream("secrets.properties"))
+        properties.load(TrevorAzureVmService.class.getClassLoader().getResourceAsStream("secrets.properties") as InputStream)
         vm = getVirtualMachine()
     }
 
