@@ -1,0 +1,1 @@
+This exists so secrets.properties gets picked up by gradle on processResources{}
