@@ -10,16 +10,16 @@ import java.util.logging.Logger
 /**
  * @author tbrooks
  */
-class TrevorAzureVmService implements VmService{
+class AzureVmService implements VmService{
 
-    private static final Logger log = Logger.getLogger(TrevorAzureVmService.class.name)
+    private static final Logger log = Logger.getLogger(AzureVmService.class.name)
 
     private final Properties properties
-    private final VirtualMachine vm
+    private VirtualMachine vm
 
-    TrevorAzureVmService(){
+    AzureVmService(){
         properties = new Properties()
-        properties.load(TrevorAzureVmService.class.getClassLoader().getResourceAsStream("secrets.properties") as InputStream)
+        properties.load(AzureVmService.class.getClassLoader().getResourceAsStream("secrets.properties") as InputStream)
         vm = getVirtualMachine()
     }
 

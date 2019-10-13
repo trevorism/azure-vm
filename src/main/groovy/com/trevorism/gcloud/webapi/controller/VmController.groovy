@@ -2,7 +2,7 @@ package com.trevorism.gcloud.webapi.controller
 
 import com.trevorism.event.WorkCompleteEventProducer
 import com.trevorism.event.model.WorkComplete
-import com.trevorism.gcloud.azure.TrevorAzureVmService
+import com.trevorism.gcloud.azure.AzureVmService
 import com.trevorism.gcloud.azure.VmService
 import com.trevorism.http.headers.HeadersHttpClient
 import com.trevorism.secure.Secure
@@ -21,7 +21,7 @@ import javax.ws.rs.core.MediaType
 @Path("/vm")
 class VmController {
 
-    private VmService service = new TrevorAzureVmService()
+    private VmService service = new AzureVmService()
     private WorkCompleteEventProducer eventProducer = new WorkCompleteEventProducer()
 
     @ApiOperation(value = "Start the trevor VM **Secure")
