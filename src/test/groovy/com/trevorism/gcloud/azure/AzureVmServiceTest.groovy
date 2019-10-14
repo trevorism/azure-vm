@@ -16,23 +16,23 @@ class AzureVmServiceTest {
     @Test
     void testStopVm() {
         service.stopVm()
-        assert !service.getVmStatus()
+        assert service.getVmStatus()
     }
 
     @Test
     void testStartVm() {
         service.startVm()
-        assert !service.getVmStatus()
+        assert service.getVmStatus()
     }
 
     @Test
     void testRestartVm() {
         service.restartVm()
-        assert !service.getVmStatus()
+        assert service.getVmStatus()
     }
 
     @Test
     void testGetVmStatus() {
-        assert !service.getVmStatus()
+        assert service.getVmStatus()
     }
 }
