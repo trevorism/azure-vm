@@ -26,6 +26,14 @@ tar xvzf nexus-3.12.0-01-unix.tar.gz
 sudo useradd -r -s /bin/false nexus
 run it as a service: https://help.sonatype.com/repomanager3/installation/run-as-a-service
 
+Update nexus:
+wget https://download.sonatype.com/nexus/3/latest-unix.tar.gz
+tar xvzf latest-unix.tar.gz
+sudo service nexus stop
+chown -R nexus:nexus nexus-3.19.1-01/
+ln -s nexus-3.19.1-01/ nexus
+sudo service nexus start
+
 Install apache httpd:
 
 sudo apt-get install apache2
@@ -55,6 +63,9 @@ See final comment here for a better configuration: https://wiki.jenkins.io/displ
 Configure for Node:
 sudo apt-get install libfontconfig
 
+Update for Node
+sudo apt-get upgrade nodejs
+
 Configure Gcloud SDK:
 https://cloud.google.com/sdk/docs/quickstart-debian-ubuntu
 
@@ -63,3 +74,15 @@ echo "deb http://packages.cloud.google.com/apt $CLOUD_SDK_REPO main" | sudo tee 
 curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
 sudo apt-get update && sudo apt-get install google-cloud-sdk
 sudo apt-get install google-cloud-sdk-app-engine-java
+
+Google Credentials:
+Create google key file: https://cloud.google.com/iam/docs/creating-managing-service-account-keys
+chown jenkins:jenkins jenkins-secret.json
+In /etc/profile:
+export GOOGLE_APPLICATION_CREDENTIALS="/opt/secret/jenkins-secret.json"
+source /etc/profile
+
+Nexus Credentials for Jenkins:
+vim /var/lib/jenkins/.gradle/gradle.properties
+nexusUsername=<Deploy Username>
+nexusPassword=<Deploy Password>
