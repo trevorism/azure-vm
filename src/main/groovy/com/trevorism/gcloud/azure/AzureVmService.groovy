@@ -14,7 +14,8 @@ import java.util.logging.Logger
 class AzureVmService implements VmService {
 
     private static final Logger log = Logger.getLogger(AzureVmService.class.name)
-
+    private static final def DO_NOT_MODIFY_APP_SECRETS = ["azure-vm"]
+    
     private final Properties properties
     private VirtualMachine vm
     private String jenkinsRoot
@@ -53,6 +54,10 @@ class AzureVmService implements VmService {
 
     @Override
     boolean createProjectSecrets(AppCredentials appCredentials) {
+        if(!isValid(appCredentials)){
+            return false
+        }
+
         def commandLines = [
                 "mkdir ${jenkinsRoot}/${appCredentials.appName}".toString(),
                 "rm ${jenkinsRoot}/${appCredentials.appName}/secrets.properties".toString(),
@@ -67,6 +72,10 @@ class AzureVmService implements VmService {
 
     @Override
     boolean updateProjectSecrets(AppCredentials appCredentials) {
+        if(!isValid(appCredentials)){
+            return false
+        }
+
         def commandLines = [
                 "sed -i -e 's/clientId=.*/clientId=${appCredentials.clientId}/g' ${jenkinsRoot}/${appCredentials.appName}/secrets.properties".toString(),
                 "sed -i -e 's/clientSecret=.*/clientSecret=${appCredentials.clientSecret}/g' ${jenkinsRoot}/${appCredentials.appName}/secrets.properties".toString()
@@ -85,5 +94,11 @@ class AzureVmService implements VmService {
         Azure azure = Azure.authenticate(credentials).withSubscription(properties.getProperty("subscriptionId"))
         VirtualMachine vm = azure.virtualMachines().getById(properties.getProperty("vmId"))
         return vm
+    }
+
+    static boolean isValid(AppCredentials appCredentials) {
+        if(!appCredentials || !appCredentials.appName || !appCredentials.clientId || !appCredentials.clientSecret || DO_NOT_MODIFY_APP_SECRETS.contains(appCredentials.appName))
+            return false
+        return true
     }
 }

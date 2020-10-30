@@ -45,5 +45,9 @@ class AzureVmServiceTest {
         assert service.createProjectSecrets(new AppCredentials(appName: "one", clientId: "two", clientSecret: "three"))
         assert service.updateProjectSecrets(new AppCredentials(appName: "one", clientId: "three", clientSecret: "four"))
 
+        assert !service.createProjectSecrets(new AppCredentials(appName: "one", clientId: "two", clientSecret: null))
+        assert !service.updateProjectSecrets(new AppCredentials(appName: "azure-vm", clientId: "two", clientSecret: "four"))
+        assert !service.createProjectSecrets(null)
+
     }
 }
