@@ -5,7 +5,7 @@
 ![GitHub language count](https://img.shields.io/github/languages/count/trevorism/azure-vm)
 ![GitHub top language](https://img.shields.io/github/languages/top/trevorism/azure-vm)
 
-Web app that administers a VM on Azure. 
+Web app that administers a VM on Azure. Deployed here: [azure-vm](https://azure-vm-dot-trevorism-gcloud.appspot.com)
 
 Current Version: 0.3.0
 

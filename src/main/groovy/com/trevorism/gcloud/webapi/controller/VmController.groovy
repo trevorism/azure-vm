@@ -61,7 +61,7 @@ class VmController {
         service.getVmStatus()
     }
 
-    @ApiOperation(value = "Create clientId and secret file for the given project")
+    @ApiOperation(value = "Create clientId and secret file for the given project **Secure")
     @POST
     @Secure(Roles.SYSTEM)
     @Path("secret")
@@ -69,7 +69,7 @@ class VmController {
         service.createProjectSecrets(appCredentials)
     }
 
-    @ApiOperation(value = "Update clientId and secret file for the given project")
+    @ApiOperation(value = "Update clientId and secret file for the given project **Secure")
     @PUT
     @Secure(Roles.SYSTEM)
     @Path("secret")
