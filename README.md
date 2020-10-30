@@ -5,7 +5,9 @@
 ![GitHub language count](https://img.shields.io/github/languages/count/trevorism/azure-vm)
 ![GitHub top language](https://img.shields.io/github/languages/top/trevorism/azure-vm)
 
-Web app that turns on a VM on Azure. 
+Web app that administers a VM on Azure. 
+
+Current Version: 0.3.0
 
 Setup a VM like this: [VM Setup from Scratch](https://github.com/trevorism/azure-vm/blob/master/SetupSteps.txt)
 
