@@ -77,7 +77,7 @@ check {
 }
 
 task deliver {
-    dependsOn("appengineDeploy", "acceptance")
+    dependsOn("appengineDeploy")
     acceptance.mustRunAfter("appengineDeploy")
     appengineDeploy.mustRunAfter("check")
 }
