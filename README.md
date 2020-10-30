@@ -9,7 +9,7 @@ Web app that administers a VM on Azure. Deployed here: [azure-vm](https://azure-
 
 Current Version: 0.3.0
 
-Setup a VM like this: [VM Setup from Scratch](https://github.com/trevorism/azure-vm/blob/master/SetupSteps.txt)
+Setup a VM like this: [VM Setup from Scratch](https://docs.google.com/document/d/1ZjcUJjTaKrr328Hi5XIYNKO_TA86z8jfZrcr8JEOfrE)
 
 ##How to build
 `gradle clean build`
