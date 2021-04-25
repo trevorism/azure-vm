@@ -5,6 +5,7 @@ buildscript {
             url "https://plugins.gradle.org/m2/"
         }
         maven {
+			allowInsecureProtocol = true
             url uri("http://trevorism-build.eastus.cloudapp.azure.com/nexus/repository/maven-releases")
         }
     }
@@ -30,6 +31,7 @@ apply plugin: "com.trevorism.gradle.release"
 repositories {
     mavenCentral()
     maven {
+		allowInsecureProtocol = true
         url uri("http://trevorism-build.eastus.cloudapp.azure.com/nexus/repository/maven-releases")
     }
 }
