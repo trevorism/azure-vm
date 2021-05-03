@@ -1,6 +1,6 @@
 package com.trevorism.gcloud.azure
 
-import com.microsoft.azure.management.compute.InstanceViewStatus
+
 import com.microsoft.azure.management.compute.RunCommandResult
 import com.microsoft.azure.management.compute.VirtualMachine
 import com.trevorism.gcloud.model.AppCredentials
@@ -41,7 +41,7 @@ class AzureVmServiceTest {
 
     @Test
     void testCommand() {
-        service.vm = [runShellScript: {arr1, arr2 -> ({} as RunCommandResult)}] as VirtualMachine
+        service.vm = [runShellScript: { arr1, arr2 -> ({} as RunCommandResult) }] as VirtualMachine
         assert service.createProjectSecrets(new AppCredentials(appName: "one", clientId: "two", clientSecret: "three"))
         assert service.updateProjectSecrets(new AppCredentials(appName: "one", clientId: "three", clientSecret: "four"))
 
